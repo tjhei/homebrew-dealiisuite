@@ -119,6 +119,8 @@ class Petsc < Formula
     end
     system "make", "install"
 
+    if build.with? "complex"
+
     # complex-valued case:
     ENV["PETSC_ARCH"] = arch_complex
     args_cmplx = ["--prefix=#{prefix}/#{arch_complex}",
@@ -132,6 +134,7 @@ class Petsc < Formula
       prefix.install "#{log_name}"
     end
     system "make", "install"
+    end
 
     # Link only what we want.
     petsc_arch = ((build.with? "complex") ? arch_complex : arch_real)
