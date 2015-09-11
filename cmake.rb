@@ -1,9 +1,9 @@
 class Cmake < Formula
   desc "Cross-platform make"
   homepage "http://www.cmake.org/"
-  url "http://tjhei.info/empty.tar.gz"
-  sha256 "03b1b1f6caac25d66d4b4424ddc793e72f83d8c85ae95688c10e208a4b7f306e"
-  version "0.2"
+  url "http://httpstat.us/200", :using => :nounzip
+  #sha256 "03b1b1f6caac25d66d4b4424ddc793e72f83d8c85ae95688c10e208a4b7f306e"
+  version "0.3"
 
   def install
     system "mkdir #{bin}"
