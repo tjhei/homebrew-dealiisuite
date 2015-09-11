@@ -32,7 +32,7 @@ class Dealii < Formula
   #depends_on "opencascade"  => :recommended
   #depends_on "p4est"        => [:recommended] + openblasdep if build.with? "mpi"
   #depends_on "parmetis"     => :recommended if build.with? "mpi"
-  depends_on "petsc"        => [:recommended] + openblasdep
+  depends_on "petsc"        => [:recommended]# + openblasdep
   #depends_on "slepc"        => :recommended
   #depends_on "suite-sparse" => [:recommended] + openblasdep
   #depends_on "tbb"          => :recommended
@@ -79,7 +79,10 @@ class Dealii < Formula
     args << "-DNETCDF_DIR=#{Formula["netcdf"].opt_prefix}" if build.with? "netcdf"
     args << "-DOPENCASCADE_DIR=#{Formula["opencascade"].opt_prefix}" if build.with? "opencascade"
     args << "-DP4EST_DIR=#{Formula["p4est"].opt_prefix}" if build.with? "p4est"
+
     args << "-DPETSC_DIR=#{Formula["petsc"].opt_prefix}" if build.with? "petsc"
+    args << "-D DEAL_II_WITH_PETSC=ON" if build.with? "petsc"
+
     args << "-DSLEPC_DIR=#{Formula["slepc"].opt_prefix}" if build.with? "slepc"
     args << "-DUMFPACK_DIR=#{Formula["suite-sparse"].opt_prefix}" if build.with? "suite-sparse"
     args << "-DTBB_DIR=#{Formula["tbb"].opt_prefix}" if build.with? "tbb"
@@ -88,6 +91,9 @@ class Dealii < Formula
     mkdir "build" do
       system "cmake", "..", *args
       system "make"
+      prefix.install "detailed.log"
+      prefix.install "summary.log"
+
       # run minimal test cases (8 tests)
       log_name = "make-test.log"
       system "make test 2>&1 | tee #{log_name}"
