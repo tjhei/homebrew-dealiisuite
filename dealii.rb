@@ -81,7 +81,7 @@ class Dealii < Formula
     args << "-DP4EST_DIR=#{Formula["p4est"].opt_prefix}" if build.with? "p4est"
 
     args << "-DPETSC_DIR=#{Formula["petsc"].opt_prefix}" if build.with? "petsc"
-    args << "-D DEAL_II_WITH_PETSC=ON" if build.with? "petsc"
+    args << "-DDEAL_II_WITH_PETSC=ON" if build.with? "petsc"
 
     args << "-DSLEPC_DIR=#{Formula["slepc"].opt_prefix}" if build.with? "slepc"
     args << "-DUMFPACK_DIR=#{Formula["suite-sparse"].opt_prefix}" if build.with? "suite-sparse"
