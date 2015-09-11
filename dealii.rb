@@ -65,12 +65,13 @@ class Dealii < Formula
 
     args << "-DLAPACK_LINKER_FLAGS=#{ENV["HOMEBREW_BLAS_LDFLAGS"]}"
 
-    #if build.with? "mpi"
+    if build.with? "mpi"
+      args << "-DDEAL_II_WITH_MPI=ON"
     #  args << "-DCMAKE_C_COMPILER=mpicc"
     #  args << "-DCMAKE_CXX_COMPILER=mpicxx"
     #  args << "-DCMAKE_Fortran_COMPILER=mpif90"
-    #end
-
+    end
+    
     args << "-DARPACK_DIR=#{Formula["arpack"].opt_prefix}" if build.with? "arpack"
     args << "-DBOOST_DIR=#{Formula["boost"].opt_prefix}" if build.with? "boost"
     args << "-DHDF5_DIR=#{Formula["hdf5"].opt_prefix}" if build.with? "hdf5"
