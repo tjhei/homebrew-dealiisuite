@@ -18,7 +18,7 @@ class Petsc < Formula
   depends_on :mpi => [:cc, :cxx, :f77, :f90]
   depends_on :fortran
   depends_on :x11 => :optional
-  depends_on "cmake" => :build
+  depends_on "meta-cmake" => :build
 
   # new linuxbrew support to use system blas if available:
   depends_on :blas

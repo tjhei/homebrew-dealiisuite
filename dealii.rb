@@ -16,7 +16,7 @@ class Dealii < Formula
 
   option "with-testsuite", "Run full test suite (7000+ tests). Takes a lot of time."
 
-  depends_on "cmake"
+  depends_on "meta-cmake"
   depends_on :mpi           => [:cc, :cxx, :f90, :recommended]
   depends_on :blas => :recommended #"openblas"     => :optional
 
